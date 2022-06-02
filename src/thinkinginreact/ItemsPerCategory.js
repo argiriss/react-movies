@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
+import './Item.css';
+
 export class ItemsPerCategory extends Component {
   render() {
     const filteredItemsPerCategory = this.props.items.filter(item => item.category === this.props.title);
@@ -13,7 +15,9 @@ export class ItemsPerCategory extends Component {
         {filteredItemsPerCategory.map((item, index) => {
           return (
             <tr key={index}>
-              <td>{item.name}</td>
+              <td>
+                <span className={`${!item.stocked ? 'itemName' : ''}`}>{item.name}</span>
+              </td>
               <td>{item.price}</td>
             </tr>
           );
