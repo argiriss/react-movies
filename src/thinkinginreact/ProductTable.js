@@ -4,6 +4,8 @@ import ItemsPerCategory from './ItemsPerCategory';
 
 export class ProductTable extends Component {
   render() {
+    const { categories, items } = this.props;
+
     return (
       <table>
         <thead>
@@ -13,8 +15,8 @@ export class ProductTable extends Component {
           </tr>
         </thead>
         <tbody>
-          {this.props.categories.map(category => {
-            return <ItemsPerCategory title={category} key={category} items={this.props.items} />;
+          {categories.map(category => {
+            return <ItemsPerCategory title={category} key={category} items={items} />;
           })}
         </tbody>
       </table>

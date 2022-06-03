@@ -29,10 +29,12 @@ export class FilterableProductTable extends Component {
   };
 
   render() {
+    const { categories, filteredItems } = this.state;
+
     return (
       <div>
         <SearchBar searchText={this.searchText} />
-        <ProductTable categories={this.state.categories} items={this.state.filteredItems} />
+        <ProductTable categories={categories} items={filteredItems} />
       </div>
     );
   }

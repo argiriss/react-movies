@@ -4,6 +4,7 @@ import './App.css';
 // import Cart from './Cart';
 // import Dialog from './Dialog';
 // import MiniCart from './MiniCart';
+import HelloFunctionalComponents from './HelloFunctionalComponents';
 import NameForm from './NameForm';
 import NewApp from './NewApp';
 import FilterableProductTable from './thinkinginreact/FilterableProductTable';
@@ -34,6 +35,7 @@ export class App extends Component {
         </Dialog> */}
         <FilterableProductTable />
         <NameForm />
+        <HelloFunctionalComponents name="Argiris" surname="Malakas" />
       </>
     );
   }

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 export class SearchBar extends Component {
@@ -9,5 +10,9 @@ export class SearchBar extends Component {
     );
   }
 }
+
+SearchBar.propTypes = {
+  searchText: PropTypes.func,
+};
 
 export default SearchBar;
