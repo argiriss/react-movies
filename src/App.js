@@ -4,6 +4,7 @@ import './App.css';
 // import Cart from './Cart';
 // import Dialog from './Dialog';
 // import MiniCart from './MiniCart';
+import NameForm from './NameForm';
 import NewApp from './NewApp';
 import FilterableProductTable from './thinkinginreact/FilterableProductTable';
 
@@ -32,6 +33,7 @@ export class App extends Component {
           <button></button>
         </Dialog> */}
         <FilterableProductTable />
+        <NameForm />
       </>
     );
   }
