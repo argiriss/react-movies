@@ -1,44 +1,35 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './App.css';
-// import Cart from './Cart';
-// import Dialog from './Dialog';
-// import MiniCart from './MiniCart';
-import HelloFunctionalComponents from './HelloFunctionalComponents';
-import NameForm from './NameForm';
-import NewApp from './NewApp';
-import FilterableProductTable from './thinkinginreact/FilterableProductTable';
 
-export class App extends Component {
-  // state = {
-  //   cartItems: 1,
-  // };
+const App = () => {
+  const [movies, setMovies] = useState([]);
 
-  // increaseCartItems = () => {
-  //   this.setState({ cartItems: this.state.cartItems + 1 });
-  // };
+  // ALL ASYNC LOGIC GOES TO A SEPARATE FUNCTION I N S I D E THE COMPONENT, AND THEN WE CALL THIS FUNCTION
+  // INSIDE THE USEEFFECT HOOK
+  const fetchMovies = async () => {
+    const movies = await fetch(
+      `${process.env.REACT_APP_OMDB_ROUTE_PATH}?apikey=${process.env.REACT_APP_OMDB_API_KEY}&y=2022&s=test`
+    )
+      .then(res => res.json())
+      .then(data => data);
 
-  render() {
-    return (
-      <>
-        <NewApp />
-        {/* THIS IS ONLY FOR TEACHING */}
-        {/* <Cart cartItems={this.state.cartItems} increaseCartItems={this.increaseCartItems} />
-        <MiniCart cartItems={this.state.cartItems} />
-        <Dialog />
-        <Dialog>
-          <button>Cancel</button>
-          <button>Continue</button>
-        </Dialog>
-        <Dialog>
-          <button></button>
-        </Dialog> */}
-        <FilterableProductTable />
-        <NameForm />
-        <HelloFunctionalComponents name="Argiris" surname="Malakas" />
-      </>
-    );
-  }
-}
+    setMovies(movies.Search);
+  };
+
+  useEffect(() => {
+    fetchMovies();
+  }, []);
+
+  return (
+    <div>
+      <ul>
+        {movies.map(movie => {
+          return <li key={movie.imdbID}>{movie.Title}</li>;
+        })}
+      </ul>
+    </div>
+  );
+};
 
 export default App;
