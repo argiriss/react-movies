@@ -34,6 +34,10 @@ const App = () => {
     setSelectedMovie(movie);
   };
 
+  const closePopup = () => {
+    setSelectedMovie({});
+  };
+
   return (
     <Fragment>
       <ul>
@@ -43,12 +47,14 @@ const App = () => {
               <li>
                 {movie.Title}
                 <button onClick={() => fetchMovie(movie.imdbID)}>Plot</button>
+                {Object.keys(selectedMovie).length > 0 && movie.imdbID === selectedMovie.imdbID && (
+                  <MovieInfoPopup movie={selectedMovie} closePopup={closePopup} />
+                )}
               </li>
             </Fragment>
           );
         })}
       </ul>
-      {Object.keys(selectedMovie).length > 0 && <MovieInfoPopup movie={selectedMovie} />}
     </Fragment>
   );
 };
