@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
-const MovieInfoPopup = ({ movie, test, fetchMovie, imdbID }) => {
+const MovieInfoPopup = ({ movie }) => {
   return (
-    <Fragment>
-      <button onClick={() => test(movie)}>More Info</button>
-      <button onClick={() => fetchMovie(imdbID)}>Plot</button>
-    </Fragment>
+    <div>
+      <div>Popup</div>
+      <div>{movie.Plot}</div>
+    </div>
   );
 };
 
