@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
+
+import MovieInfoPopup from './MovieInfoPopup';
 
 import './App.css';
 
@@ -21,14 +23,37 @@ const App = () => {
     fetchMovies();
   }, []);
 
+  const test = movie => {
+    console.log(movie.Title);
+  };
+
+  const fetchMovie = async imdbID => {
+    const movie = await fetch(
+      `${process.env.REACT_APP_OMDB_ROUTE_PATH}?apikey=${process.env.REACT_APP_OMDB_API_KEY}&i=${imdbID}`
+    )
+      .then(res => res.json())
+      .then(data => data);
+
+    console.log(movie.Plot);
+  };
+
   return (
-    <div>
+    <Fragment>
       <ul>
         {movies.map(movie => {
-          return <li key={movie.imdbID}>{movie.Title}</li>;
+          return (
+            <Fragment>
+              <li key={movie.imdbID}>{movie.Title}</li>
+              <MovieInfoPopup
+                test={() => test(movie)}
+                imdbID={movie.imdbID}
+                fetchMovie={() => fetchMovie(movie.imdbID)}
+              ></MovieInfoPopup>
+            </Fragment>
+          );
         })}
       </ul>
-    </div>
+    </Fragment>
   );
 };
 
