@@ -1,11 +1,16 @@
 import React, { useState, useEffect, Fragment } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { increaseCounterAction } from './actions/counterActions';
 import MovieForm from './MovieForm';
 import MovieInfoPopup from './MovieInfoPopup';
+import { counter } from './selectors/counterSelectors';
 
 import './App.css';
 
 const App = () => {
+  // INITIATE DISPATCH FUNCTION/HOOK
+  const dispatch = useDispatch();
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState({});
   const [movieName, setMovieName] = useState('');
@@ -84,6 +89,8 @@ const App = () => {
       ) : (
         <div>{errorMessage}</div>
       )}
+      <div>{useSelector(counter)}</div>
+      <button onClick={() => dispatch(increaseCounterAction(2))}>Increase counter</button>
     </Fragment>
   );
 };
