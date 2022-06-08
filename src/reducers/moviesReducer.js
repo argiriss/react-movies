@@ -1,11 +1,12 @@
 // THIS FUNCTION CREATES A REDUCER
 import { createReducer } from '@reduxjs/toolkit';
 
-import { addMoviesList, addMoviesErrorMessage } from '../actions/moviesActions';
+import { addMoviesList, addMoviesErrorMessage, returnMovieInfo } from '../actions/moviesActions';
 
 const initialState = {
   movies: [],
   errorMessage: 'No movies found!',
+  selectedMovie: {},
 };
 
 const moviesReducer = createReducer(initialState, {
@@ -16,6 +17,10 @@ const moviesReducer = createReducer(initialState, {
   [addMoviesErrorMessage.type]: (state, action) => ({
     ...state,
     errorMessage: action.payload,
+  }),
+  [returnMovieInfo.type]: (state, action) => ({
+    ...state,
+    selectedMovie: action.payload,
   }),
 });
 

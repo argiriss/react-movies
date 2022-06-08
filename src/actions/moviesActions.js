@@ -7,5 +7,6 @@ import { createAction } from '@reduxjs/toolkit';
 // payload: undefined up to now, but ready to accept any payload/argument
 const addMoviesList = createAction('movies/addMoviesList');
 const addMoviesErrorMessage = createAction('movies/addMoviesErrorMessage');
+const returnMovieInfo = createAction('movies/returnMovieInfo');
 
-export { addMoviesList, addMoviesErrorMessage };
+export { addMoviesList, addMoviesErrorMessage, returnMovieInfo };
