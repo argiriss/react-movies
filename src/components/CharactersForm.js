@@ -1,17 +1,19 @@
 import React from 'react';
 
+import './charactersForm.css';
+
 const CharactersForm = ({ fetchCharacters, name, setName, status, setStatus, gender, setGender }) => {
   return (
-    <div>
+    <div className="charactersForm">
       <input
         type="text"
         value={name}
-        placeholder="Enter characters name"
+        placeholder="Enter character's name"
         name="name"
         onChange={e => setName(e.target.value)}
       />
 
-      <div>
+      <div className="inputRadioButton">
         <div>
           <input
             type="radio"
@@ -50,7 +52,7 @@ const CharactersForm = ({ fetchCharacters, name, setName, status, setStatus, gen
       </div>
 
       <div>
-        <label htmlFor="gender">Select gender</label>
+        <label htmlFor="gender">Select gender: </label>
 
         <select name="gender" id="gender" onChange={e => setGender(e.target.value)}>
           <option value="female">Female</option>
@@ -60,8 +62,8 @@ const CharactersForm = ({ fetchCharacters, name, setName, status, setStatus, gen
         </select>
       </div>
 
-      <button type="button" onClick={() => fetchCharacters(name, status, gender)}>
-        Submit
+      <button className="submitButton" type="button" onClick={() => fetchCharacters(name, status, gender)}>
+        Search
       </button>
     </div>
   );
