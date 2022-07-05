@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './characters.css';
 
@@ -7,7 +8,9 @@ const CharacterCard = ({ character }) => {
     <div className="card">
       <div className="card-image" style={{ backgroundImage: `url('${character.image}')` }} />
       <div className="card-content">
-        <h1>{character.name}</h1>
+        <Link to={`/character/${character.id}`}>
+          <h1>{character.name}</h1>
+        </Link>
         <span>
           {character.status} - {character.species}
         </span>

@@ -6,5 +6,6 @@ import { createAction } from '@reduxjs/toolkit';
 // type: 'counter/increaseCounter'
 // payload: undefined up to now, but ready to accept any payload/argument
 const setCharactersList = createAction('characters/setList');
+const setCharacter = createAction('characters/setCharacter');
 
-export { setCharactersList };
+export { setCharactersList, setCharacter };

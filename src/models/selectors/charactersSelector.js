@@ -2,4 +2,8 @@ const characters = ({ charactersReducer }) => {
   return charactersReducer.characters;
 };
 
-export { characters };
+const character = ({ charactersReducer }) => {
+  return charactersReducer.character;
+};
+
+export { characters, character };
