@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react';
+import CharacterCard from 'components/CharacterCard';
+import React from 'react';
 
 import './App.css';
 
 const App = () => {
   // INITIATE DISPATCH FUNCTION/HOOK
-
-  return <Fragment></Fragment>;
+  <CharacterCard />;
 };
 
 export default App;
