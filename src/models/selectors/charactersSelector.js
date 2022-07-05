@@ -1,9 +1,5 @@
-const characters = ({ charactersReducer }) => {
-  return charactersReducer.characters;
-};
+const characters = state => state.charactersReducer.characters;
 
-const character = ({ charactersReducer }) => {
-  return charactersReducer.character;
-};
+const singleCharacter = state => state.charactersReducer.character;
 
-export { characters, character };
+export { characters, singleCharacter };
