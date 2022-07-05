@@ -1,10 +1,12 @@
 import React from 'react';
 
-const CharacterCard = () => {
+import './characters.css';
+
+const CharacterCard = ({ character }) => {
   return (
-    <div>
-      <div>image</div>
-      <div>content</div>
+    <div className="card">
+      <div className="card-image" style={{ backgroundImage: `url('${character.image}')` }} />
+      <div className="card-content">content</div>
     </div>
   );
 };
