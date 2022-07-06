@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 const Pagination = ({ totalResults, pages }) => {
   return (
     <div>
-      <span>Found {totalResults} results</span>
-      <ul>
-        {pages.map(page => {
-          return <li key={page}>{page + 1}</li>;
-        })}
-      </ul>
+      {totalResults > 0 ? (
+        <Fragment>
+          <span>Found {totalResults} results</span>
+          <ul>
+            {pages.map(page => {
+              return <li key={page}>{page + 1}</li>;
+            })}
+          </ul>
+        </Fragment>
+      ) : null}
     </div>
   );
 };

@@ -3,10 +3,12 @@ import { createReducer } from '@reduxjs/toolkit';
 
 import { setCharactersList } from '../actions/characterActions';
 import { setCharacter } from '../actions/characterActions';
+import { setError } from '../actions/characterActions';
 
 const initialState = {
   characters: {},
   character: {},
+  error: '',
 };
 
 const charactersReducer = createReducer(initialState, {
@@ -18,14 +20,10 @@ const charactersReducer = createReducer(initialState, {
     ...state,
     character: action.payload,
   }),
-  // [addMoviesErrorMessage.type]: (state, action) => ({
-  //   ...state,
-  //   errorMessage: action.payload,
-  // }),
-  // [returnMovieInfo.type]: (state, action) => ({
-  //   ...state,
-  //   selectedMovie: action.payload,
-  // }),
+  [setError.type]: (state, action) => ({
+    ...state,
+    error: action.payload,
+  }),
 });
 
 export default charactersReducer;

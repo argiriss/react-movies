@@ -7,5 +7,6 @@ import { createAction } from '@reduxjs/toolkit';
 // payload: undefined up to now, but ready to accept any payload/argument
 const setCharactersList = createAction('characters/setList');
 const setCharacter = createAction('characters/setCharacter');
+const setError = createAction('characters/setError');
 
-export { setCharactersList, setCharacter };
+export { setCharactersList, setCharacter, setError };

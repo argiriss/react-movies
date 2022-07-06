@@ -1,4 +1,4 @@
-import { characters } from 'models/selectors/charactersSelector';
+import { characters, error } from 'models/selectors/charactersSelector';
 import React, { Fragment } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -8,8 +8,9 @@ import './characterList.css';
 
 const CharacterList = () => {
   const returnedCharacters = useSelector(characters);
+  const errorMessage = useSelector(error);
 
-  return (
+  return errorMessage === '' ? (
     <Fragment>
       <Pagination
         totalResults={returnedCharacters?.info?.count}
@@ -22,6 +23,8 @@ const CharacterList = () => {
         ))}
       </div>
     </Fragment>
+  ) : (
+    <span>{errorMessage}</span>
   );
 };
 

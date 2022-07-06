@@ -1,6 +1,7 @@
 import CharacterList from 'components/CharacterList';
 import CharactersForm from 'components/CharactersForm';
 import { setCharactersList } from 'models/actions/characterActions';
+import { setError } from 'models/actions/characterActions';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -20,7 +21,12 @@ const Characters = ({ toggle, setToggle }) => {
     );
     const returnedCharacters = await characters.json();
 
-    dispatch(setCharactersList(returnedCharacters));
+    if (returnedCharacters.error === '' || !returnedCharacters.error) {
+      dispatch(setCharactersList(returnedCharacters));
+      dispatch(setError(''));
+    } else {
+      dispatch(setError(returnedCharacters.error));
+    }
     setToggle(false);
   };
 
