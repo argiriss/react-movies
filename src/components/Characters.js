@@ -4,7 +4,9 @@ import { setCharactersList } from 'models/actions/characterActions';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-const Characters = () => {
+import withToggle from './withToggle';
+
+const Characters = ({ toggle, setToggle }) => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
@@ -12,16 +14,19 @@ const Characters = () => {
   const [gender, setGender] = useState('');
 
   const fetchCharacters = async (name, status, gender) => {
+    setToggle(true);
     const characters = await fetch(
       `${process.env.REACT_APP_RICKANDMORTY}/character?name=${name}&status=${status}&gender=${gender}`
     );
     const returnedCharacters = await characters.json();
 
     dispatch(setCharactersList(returnedCharacters));
+    setToggle(false);
   };
 
   return (
     <div>
+      {toggle && 'LOADING....'}
       <CharactersForm
         setName={setName}
         fetchCharacters={fetchCharacters}
@@ -37,4 +42,4 @@ const Characters = () => {
   );
 };
 
-export default Characters;
+export default withToggle(Characters);
