@@ -1,7 +1,8 @@
 import CharacterList from 'components/CharacterList';
 import CharactersForm from 'components/CharactersForm';
-import { setCharactersList } from 'models/actions/characterActions';
-import { setError } from 'models/actions/characterActions';
+// import { setCharactersList } from 'models/actions/characterActions';
+import { fetchCharactersAction } from 'models/actions/characterActions';
+// import { setError } from 'models/actions/characterActions';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -15,19 +16,9 @@ const Characters = ({ toggle, setToggle }) => {
   const [gender, setGender] = useState('');
 
   const fetchCharacters = async (name, status, gender) => {
-    // setToggle(true);
-    const characters = await fetch(
-      `${process.env.REACT_APP_RICKANDMORTY}/character?name=${name}&status=${status}&gender=${gender}`
-    );
-    const returnedCharacters = await characters.json();
-
-    if (returnedCharacters.error === '' || !returnedCharacters.error) {
-      dispatch(setCharactersList(returnedCharacters));
-      dispatch(setError(''));
-    } else {
-      dispatch(setError(returnedCharacters.error));
-    }
-    // setToggle(false);
+    setToggle(true);
+    dispatch(fetchCharactersAction({ name, status, gender }));
+    setToggle(false);
   };
 
   return (

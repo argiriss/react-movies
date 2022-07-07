@@ -9,5 +9,7 @@ const setCharactersList = createAction('characters/setList');
 const setCharacter = createAction('characters/setCharacter');
 const setError = createAction('characters/setError');
 const increaseCounter = createAction('characters/increaseCounter');
+const increaseCounterSuccessful = createAction('characters/increaseCounterSuccessful');
+const fetchCharactersAction = createAction('characters/fetchCharactersAction');
 
-export { setCharactersList, setCharacter, setError, increaseCounter };
+export { setCharactersList, setCharacter, setError, increaseCounter, increaseCounterSuccessful, fetchCharactersAction };

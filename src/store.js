@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-// import rootEpics from 'models/epics/rootEpics';
-import { createEpicMiddleware } from 'redux-observable';
+import { fetchCharactersEpic } from 'models/epics/characterEpics';
+import { increaseCounterEpic } from 'models/epics/epics';
+import { createEpicMiddleware, combineEpics } from 'redux-observable';
 
 import charactersReducer from './models/reducers/characters';
 
@@ -12,6 +13,6 @@ const store = configureStore({
   devTools: process.env.NODE_ENV !== 'production',
 });
 
-// epicMiddleWare.run(rootEpics);
+epicMiddleWare.run(combineEpics(increaseCounterEpic, fetchCharactersEpic));
 
 export default store;
