@@ -15,7 +15,7 @@ const Characters = ({ toggle, setToggle }) => {
   const [gender, setGender] = useState('');
 
   const fetchCharacters = async (name, status, gender) => {
-    setToggle(true);
+    // setToggle(true);
     const characters = await fetch(
       `${process.env.REACT_APP_RICKANDMORTY}/character?name=${name}&status=${status}&gender=${gender}`
     );
@@ -27,7 +27,7 @@ const Characters = ({ toggle, setToggle }) => {
     } else {
       dispatch(setError(returnedCharacters.error));
     }
-    setToggle(false);
+    // setToggle(false);
   };
 
   return (

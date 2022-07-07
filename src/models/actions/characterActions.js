@@ -8,5 +8,6 @@ import { createAction } from '@reduxjs/toolkit';
 const setCharactersList = createAction('characters/setList');
 const setCharacter = createAction('characters/setCharacter');
 const setError = createAction('characters/setError');
+const increaseCounter = createAction('characters/increaseCounter');
 
-export { setCharactersList, setCharacter, setError };
+export { setCharactersList, setCharacter, setError, increaseCounter };

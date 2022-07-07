@@ -1,14 +1,13 @@
 // THIS FUNCTION CREATES A REDUCER
 import { createReducer } from '@reduxjs/toolkit';
 
-import { setCharactersList } from '../actions/characterActions';
-import { setCharacter } from '../actions/characterActions';
-import { setError } from '../actions/characterActions';
+import { setCharactersList, increaseCounter, setCharacter } from '../actions/characterActions';
 
 const initialState = {
   characters: {},
   character: {},
-  error: '',
+  loading: false,
+  counter: 0,
 };
 
 const charactersReducer = createReducer(initialState, {
@@ -20,10 +19,17 @@ const charactersReducer = createReducer(initialState, {
     ...state,
     character: action.payload,
   }),
-  [setError.type]: (state, action) => ({
+  [increaseCounter.type]: (state, action) => ({
     ...state,
-    error: action.payload,
   }),
+  // [addMoviesErrorMessage.type]: (state, action) => ({
+  //   ...state,
+  //   errorMessage: action.payload,
+  // }),
+  // [returnMovieInfo.type]: (state, action) => ({
+  //   ...state,
+  //   selectedMovie: action.payload,
+  // }),
 });
 
 export default charactersReducer;
