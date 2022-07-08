@@ -1,8 +1,6 @@
 import CharacterList from 'components/CharacterList';
 import CharactersForm from 'components/CharactersForm';
-// import { setCharactersList } from 'models/actions/characterActions';
 import { fetchCharactersAction } from 'models/actions/characterActions';
-// import { setError } from 'models/actions/characterActions';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -15,9 +13,9 @@ const Characters = ({ toggle, setToggle }) => {
   const [status, setStatus] = useState('');
   const [gender, setGender] = useState('');
 
-  const fetchCharacters = async (name, status, gender) => {
+  const fetchCharacters = async (name, status, gender, page = 1) => {
     setToggle(true);
-    dispatch(fetchCharactersAction({ name, status, gender }));
+    dispatch(fetchCharactersAction({ name, status, gender, page }));
     setToggle(false);
   };
 
@@ -34,7 +32,7 @@ const Characters = ({ toggle, setToggle }) => {
         setGender={setGender}
       />
 
-      <CharacterList />
+      <CharacterList extraPayload={{ name, status, gender }} />
     </div>
   );
 };

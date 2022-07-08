@@ -1,4 +1,4 @@
-import { increaseCounter } from 'models/actions/characterActions';
+import { increaseCounter, fetchCharactersAction } from 'models/actions/characterActions';
 import { characters, error, counter } from 'models/selectors/charactersSelector';
 import React, { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,7 +7,7 @@ import CharacterCard from './CharacterCard';
 import Pagination from './Pagination';
 import './characterList.css';
 
-const CharacterList = () => {
+const CharacterList = ({ extraPayload }) => {
   const returnedCharacters = useSelector(characters);
   const errorMessage = useSelector(error);
   const counterSelector = useSelector(counter);
@@ -22,6 +22,8 @@ const CharacterList = () => {
       <Pagination
         totalResults={returnedCharacters?.info?.count}
         pages={[...Array(returnedCharacters?.info?.pages).keys()] || []}
+        clickEvent={fetchCharactersAction}
+        extraPayload={extraPayload}
       />
 
       <div className="characterList">

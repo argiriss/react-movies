@@ -1,12 +1,13 @@
 import { fetchCharactersAction, setCharactersList, setError } from 'models/actions/characterActions';
 import { ofType } from 'redux-observable';
-import { mergeMap } from 'rxjs/operators';
+// import { fromPromise } from 'rxjs';
+import { concatMap } from 'rxjs/operators';
 
 const fetchCharactersEpic = action$ =>
   action$.pipe(
     ofType(fetchCharactersAction.type),
-    mergeMap(async ({ payload: { name, status, gender } }) => {
-      const url = `${process.env.REACT_APP_RICKANDMORTY}/character?name=${name}&status=${status}&gender=${gender}`;
+    concatMap(async ({ payload: { name, status, gender, page } }) => {
+      const url = `${process.env.REACT_APP_RICKANDMORTY}/character?page=${page}&name=${name}&status=${status}&gender=${gender}`;
       const characters = await fetch(url);
       const returnedCharacters = await characters.json();
 
@@ -20,7 +21,9 @@ const fetchCharactersEpic = action$ =>
 
       // equals to dispatch(setCharactersList(returnedCharacters)) from component
       if (returnedCharacters?.error === '' || !returnedCharacters?.error) {
-        return [setCharactersList(newReturnedCharacters), setError('')];
+        // debugger;
+
+        return setCharactersList(newReturnedCharacters);
       }
 
       return setError(returnedCharacters?.error);

@@ -1,6 +1,9 @@
 import React, { Fragment } from 'react';
+import { useDispatch } from 'react-redux';
 
-const Pagination = ({ totalResults, pages }) => {
+const Pagination = ({ totalResults, pages, clickEvent, extraPayload }) => {
+  const dispatch = useDispatch();
+
   return (
     <div>
       {totalResults > 0 ? (
@@ -8,7 +11,11 @@ const Pagination = ({ totalResults, pages }) => {
           <span>Found {totalResults} results</span>
           <ul>
             {pages.map(page => {
-              return <li key={page}>{page + 1}</li>;
+              return (
+                <li onClick={() => dispatch(clickEvent({ page: page + 1, ...extraPayload }))} key={page}>
+                  {page + 1}
+                </li>
+              );
             })}
           </ul>
         </Fragment>
