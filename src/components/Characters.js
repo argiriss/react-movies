@@ -1,27 +1,26 @@
 import CharacterList from 'components/CharacterList';
 import CharactersForm from 'components/CharactersForm';
-import { fetchCharactersAction } from 'models/actions/characterActions';
+import { fetchCharactersAction, setToggleCharacters } from 'models/actions/characterActions';
+import { charactersLoading } from 'models/selectors/charactersSelector';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import withToggle from './withToggle';
-
-const Characters = ({ toggle, setToggle }) => {
+const Characters = () => {
   const dispatch = useDispatch();
+  const loadingSelector = useSelector(charactersLoading);
 
   const [name, setName] = useState('');
   const [status, setStatus] = useState('');
   const [gender, setGender] = useState('');
 
-  const fetchCharacters = async (name, status, gender, page = 1) => {
-    setToggle(true);
+  const fetchCharacters = (name, status, gender, page = 1) => {
+    dispatch(setToggleCharacters());
     dispatch(fetchCharactersAction({ name, status, gender, page }));
-    setToggle(false);
   };
 
   return (
     <div>
-      {toggle && 'LOADING....'}
+      {loadingSelector && 'LOADING....'}
       <CharactersForm
         setName={setName}
         fetchCharacters={fetchCharacters}
@@ -37,4 +36,4 @@ const Characters = ({ toggle, setToggle }) => {
   );
 };
 
-export default withToggle(Characters);
+export default Characters;

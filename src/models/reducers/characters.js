@@ -1,7 +1,13 @@
 // THIS FUNCTION CREATES A REDUCER
 import { createReducer } from '@reduxjs/toolkit';
 
-import { setCharactersList, setCharacter, increaseCounterSuccessful, setError } from '../actions/characterActions';
+import {
+  setCharactersList,
+  setCharacter,
+  increaseCounterSuccessful,
+  setError,
+  setToggleCharacters,
+} from '../actions/characterActions';
 
 const initialState = {
   characters: {},
@@ -23,6 +29,10 @@ const charactersReducer = createReducer(initialState, {
   [setError.type]: (state, action) => ({
     ...state,
     error: action.payload,
+  }),
+  [setToggleCharacters.type]: state => ({
+    ...state,
+    loading: !state.loading,
   }),
   [increaseCounterSuccessful.type]: (state, action) => ({
     ...state,

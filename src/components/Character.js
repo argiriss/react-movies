@@ -4,19 +4,15 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import withToggle from './withToggle';
-
-const Character = ({ toggle, setToggle }) => {
+const Character = () => {
   const dispatch = useDispatch();
   const character = useSelector(singleCharacter);
 
   const fetchCharacter = async id => {
-    setToggle(true);
     const initialCharacter = await fetch(`${process.env.REACT_APP_RICKANDMORTY}/character/${id}`);
     const returnedCharacter = await initialCharacter.json();
 
     dispatch(setCharacter(returnedCharacter));
-    setToggle(false);
   };
 
   const { id } = useParams();
@@ -25,7 +21,7 @@ const Character = ({ toggle, setToggle }) => {
     fetchCharacter(id);
   }, []);
 
-  return !toggle ? <div>{character.name}</div> : 'LOADING....';
+  return <div>{character.name}</div>;
 };
 
-export default withToggle(Character);
+export default Character;

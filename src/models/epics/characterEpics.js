@@ -1,4 +1,9 @@
-import { fetchCharactersAction, setCharactersList, setError } from 'models/actions/characterActions';
+import {
+  fetchCharactersAction,
+  setCharactersList,
+  setError,
+  setToggleCharacters,
+} from 'models/actions/characterActions';
 import { ofType } from 'redux-observable';
 import { from } from 'rxjs';
 import { concatMap, mergeMap } from 'rxjs/operators';
@@ -13,10 +18,10 @@ const fetchCharactersEpic = action$ =>
       return returnedCharacters.pipe(
         concatMap(payload => {
           if (payload?.error === '' || !payload?.error) {
-            return [setCharactersList(payload), setError('')];
+            return [setCharactersList(payload), setError(''), setToggleCharacters()];
           }
 
-          return [setError(payload?.error)];
+          return [setError(payload?.error), setToggleCharacters()];
         })
       );
     })

@@ -11,5 +11,14 @@ const setError = createAction('characters/setError');
 const increaseCounter = createAction('characters/increaseCounter');
 const increaseCounterSuccessful = createAction('characters/increaseCounterSuccessful');
 const fetchCharactersAction = createAction('characters/fetchCharactersAction');
+const setToggleCharacters = createAction('characters/loader');
 
-export { setCharactersList, setCharacter, setError, increaseCounter, increaseCounterSuccessful, fetchCharactersAction };
+export {
+  setCharactersList,
+  setCharacter,
+  setError,
+  increaseCounter,
+  increaseCounterSuccessful,
+  fetchCharactersAction,
+  setToggleCharacters,
+};
